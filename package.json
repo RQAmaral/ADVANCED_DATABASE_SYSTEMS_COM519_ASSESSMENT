@@ -4,7 +4,8 @@
   "description": "",
   "main": "home.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon home.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,11 @@
   },
   "homepage": "https://github.com/RQAmaral/ADVANCED_DATABASE_SYSTEMS_COM519_ASSESSMENT#readme",
   "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
     "mongodb": "^4.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
