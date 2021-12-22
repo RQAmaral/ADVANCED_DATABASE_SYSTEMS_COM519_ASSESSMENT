@@ -1,0 +1,23 @@
+{
+  "name": "advanced_database_systems_com519_assessment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "home.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RQAmaral/ADVANCED_DATABASE_SYSTEMS_COM519_ASSESSMENT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RQAmaral/ADVANCED_DATABASE_SYSTEMS_COM519_ASSESSMENT/issues"
+  },
+  "homepage": "https://github.com/RQAmaral/ADVANCED_DATABASE_SYSTEMS_COM519_ASSESSMENT#readme",
+  "dependencies": {
+    "mongodb": "^4.2.2"
+  }
+}
