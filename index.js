@@ -4,14 +4,21 @@ const { MongoClient } = require("mongodb");
 const express = require("express");
 const path = require("path");
 const app = express();
-
 const port = 3000;
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (req, res) => {
-  res.render("index.ejs");
+app.get("/home", (req, res) => {
+  res.render("index");
+});
+
+app.get("/about", (req, res) => {
+    res.render("about");
+  });
+
+app.get("/contact", (req, res) => {
+  res.render("contacts");
 });
 
 app.listen(port, () => {
@@ -31,20 +38,3 @@ const students = [
         dob: new Date("September 11, 1999")
     },
 ];
-
-server.on("request", async (req, res) => {
-    try{
-    const { method, url, headers } = req;
-
-    console.log(method);
-    console.log(url);
-    console.log(headers);
-    res.end("hello, Bu");
-
-    } catch(e) {
-        console.log('Could not update ${e}');
-
-    }
-});
-
-server.listen(8080);
