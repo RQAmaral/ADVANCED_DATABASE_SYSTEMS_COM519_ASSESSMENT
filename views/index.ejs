@@ -9,7 +9,21 @@
 </head>
 <body>
     <%- include('common/header') %>
-    <img src="southampton-harbour-hotel.jpg" />
+    <form action="/" method="POST">
+        <table class="display table" id="myTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Room Number</th>
+                    <th>Price (£)</th>
+                    <th>Reservation name</th>
+                    <th>Type of stay</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%- include('common/search') %>
+            </tbody>
+        </table>
+    </form>
     <%- include('common/footer') %>
 </body>
 </html>

@@ -36,8 +36,8 @@ async function main() {
      * Import the JSON data into the database
      */
 
-    const data = await fs.readFile(path.join(__dirname, "wine.json"), "utf8");
-    await db.collection("tastings").insertMany(JSON.parse(data));
+    const data = await fs.readFile(path.join(__dirname, "assessment.json"), "utf8");
+    await db.collection("assessment").insertMany(JSON.parse(data));
 
     /**
      * This perhaps appears a little more complex than it is. Below, we are
@@ -45,7 +45,7 @@ async function main() {
      * we tidy up the output so it represents the format we need for our new collection
      */
 
-    const wineTastersRef = await db.collection("tastings").aggregate([
+    const wineTastersRef = await db.collection("assessment").aggregate([
       { $match: { taster_name: { $ne: null } } },
       {
         $group: {
@@ -67,17 +67,17 @@ async function main() {
      * new collection
      */
     const wineTasters = await wineTastersRef.toArray();
-    await db.collection("tasters").insertMany(wineTasters);
+    await db.collection("assessment").insertMany(wineTasters);
 
     /** Our final data manipulation is to reference each document in the
      * tastings collection to a taster id
      */
 
-    const updatedWineTastersRef = db.collection("tasters").find({});
+    const updatedWineTastersRef = db.collection("customers").find({});
     const updatedWineTasters = await updatedWineTastersRef.toArray();
     updatedWineTasters.forEach(async ({ _id, name }) => {
       await db
-        .collection("tastings")
+        .collection("assessment")
         .updateMany({ taster_name: name }, [
           { $set: { taster_id: _id, regions: ["$region_1", "$region_2"] } },
         ]);
@@ -86,14 +86,14 @@ async function main() {
        * placed them in an array
        */
       await db
-        .collection("tastings")
+        .collection("assessment")
         .updateMany({}, { $unset: { region_1: "", region_2: " " } });
 
       /**
        * Finally, we remove nulls regions from our collection of arrays
        *  */
       await db
-        .collection("tastings")
+        .collection("assessment")
         .updateMany({ regions: { $all: [null] } }, [
           { $set: { regions: [{ $arrayElemAt: ["$regions", 0] }] } },
         ]);

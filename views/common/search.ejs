@@ -1,0 +1,12 @@
+<% for(var i = 0; i < roomsList.length; i++) { %>
+    <tr>
+    <td><%= roomsList[i].room %></td>
+    <td><%= roomsList[i].price %></td>
+    <td><%= roomsList[i].reservation %></td>
+    <td><%= roomsList[i].type %></td>
+    <td>
+        <a href="" class="btn border-shadow update"></a>
+        <a id="deleteIcon" class="btn border-shadow delete"></a>
+    </td>
+</tr>
+<%}%>
