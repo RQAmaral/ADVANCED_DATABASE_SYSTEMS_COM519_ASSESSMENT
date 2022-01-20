@@ -3,8 +3,10 @@ const path = require("path");
 const app = express();
 const port = 3000;
 const mongo = require("./mongo");
+var MongoClient = require('mongodb').MongoClient;
 const schema = require("./schemas/room-schema");
 const bodyParser = require("body-parser");
+const { assert } = require("console");
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
@@ -21,34 +23,7 @@ const connectDB = async () => {
   })
 };
 
-connectDB();
-
-//Create new room registry
-/*const create=(req,res)=>{
-  
-  // new room
-  const room = new rooms({
-      room : req.body.room,
-      price: req.body.price,
-      reservation : req.body.reservation,
-      type : req.body.type
-  })
-
-  //add room to DB
-  await new schema(room).save()
-  room.then(data => {
-          res.redirect('/add');
-      })
-      .catch(err =>{
-          res.status(500).send({
-              message : err.message || "Error occurred"
-          });
-      });
-}
-
-
-
-*/
+database = connectDB();
 
 //gets
 app.get("/home", (req, res) => {
@@ -63,16 +38,17 @@ app.get("/add", (req, res) => {
   res.render("add");
 });
 
-app.get("/about", (req, res) => {
-    res.render("about");
+app.get("/delete", (req, res) => {
+    res.render("delete");
   });
 
-app.get("/contacts", (req, res) => {
+app.get("/update", (req, res) => {
   res.render("update");
 });
 
-//posts
-app.post("/", function(req,res){
+//Posts
+//Add
+app.post("/add", function(req,res){
   let newRoom = new schema({
     room : req.body.room,
     price: req.body.price,
@@ -82,8 +58,37 @@ app.post("/", function(req,res){
   newRoom.save();
   res.redirect("/home");
 })
+//Update
+app.post("/update_room", async function(req,res){
+  await mongo().then(async (mongoose) =>{
+    try{
+      await schema.updateOne({
+        room : req.body.room
+      },{
+        price: req.body.price,
+        reservation : req.body.reservation,
+        type : req.body.type
+      })
+    }catch{
+      console.log("Error Connecting to DB")
+    }
+  })
+  res.redirect("/home")
+})
+//Delete
+app.post("/delete_reservation", async function(req,res){
+  await mongo().then(async (mongoose) =>{
+    try{
+      await schema.deleteOne({
+        room : req.body.room
+      })
+    }catch{
+      console.log("Error Connecting to DB")
+    }
+  })
+  res.redirect("/home")
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
-

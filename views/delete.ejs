@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update</title>
+    <title>Delete</title>
 </head>
 <body>
     <%- include('common/header') %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <form class = "container" method = "post" action = "/update_room">
+    <form class = "container" method = "post" action = "/delete_reservation">
         <div class = "form-group">
             <input class = "form-control" name="room">
         </div>
@@ -22,7 +22,7 @@
         <div class = "form-group">
             <input class = "form-control" name="type">
         </div>
-        <button>Update Reservation</button>
+        <button>Delete Reservation</button>
     </form>
     <%- include('common/footer') %>
 </body>
