@@ -39,11 +39,19 @@ app.get("/add", (req, res) => {
 });
 
 app.get("/delete", (req, res) => {
-    res.render("delete");
+  schema.find({}, function(err, rooms){
+    res.render("delete", {
+      roomsList: rooms
+    })
+  })
   });
 
 app.get("/update", (req, res) => {
-  res.render("update");
+  schema.find({}, function(err, rooms){
+    res.render("update", {
+      roomsList: rooms
+    })
+  })
 });
 
 //Posts

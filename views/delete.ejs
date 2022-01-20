@@ -10,17 +10,16 @@
     <%- include('common/header') %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <form class = "container" method = "post" action = "/delete_reservation">
+        <h2 class="text-dark">Delete Reservation</h2>
         <div class = "form-group">
-            <input class = "form-control" name="room">
-        </div>
-        <div class = "form-group">
-            <input class = "form-control" name="price">
-        </div>
-        <div class = "form-group">
-            <input class = "form-control" name="reservation">
-        </div>
-        <div class = "form-group">
-            <input class = "form-control" name="type">
+            <div class = "form-group">
+                <label for="type of stay"> Room to delete:</label>
+                <select name="room">
+                <% for(var i = 0; i < roomsList.length; i++) { %>
+                <option value="<%= roomsList[i].room %>"><%= roomsList[i].room %></option>
+                <%}%>
+                </select>
+            </div>
         </div>
         <button>Delete Reservation</button>
     </form>

@@ -1,16 +1,27 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <form class = "container" method = "post" action = "/add">
+    <h2 class="text-dark">New Reservation</h2>
     <div class = "form-group">
+        Room Number
         <input class = "form-control" name="room">
     </div>
     <div class = "form-group">
-        <input class = "form-control" name="price">
+        <label for="type of stay"> Price per night (£):</label>
+        <select name="price">
+        <option value=300>300</option>
+        <option value=600>600</option>
+        </select>
     </div>
     <div class = "form-group">
+        Name of guest
         <input class = "form-control" name="reservation">
     </div>
     <div class = "form-group">
-        <input class = "form-control" name="type">
+        <label for="type of stay">Type of Stay:</label>
+        <select name="type">
+        <option value="stayover">Stayover</option>
+        <option value="departure">Departure</option>
+        </select>
     </div>
     <button>Add Reservation</button>
 </form>
