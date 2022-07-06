@@ -34,6 +34,14 @@ app.get("/home", (req, res) => {
   })
 });
 
+app.get("/home", (req, res) => {
+  schema.find({}, function(err, rooms){
+    res.render("index", {
+      roomsList: rooms
+    })
+  })
+});
+
 app.get("/add", (req, res) => {
   res.render("add");
 });
