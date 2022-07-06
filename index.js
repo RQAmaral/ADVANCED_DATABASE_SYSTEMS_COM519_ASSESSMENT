@@ -7,6 +7,9 @@ var MongoClient = require('mongodb').MongoClient;
 const schema = require("./schemas/room-schema");
 const bodyParser = require("body-parser");
 const { assert } = require("console");
+const mongoose = require("mongoose");
+const MONGODB_URI="mongodb+srv://Rodrigo:alter130799@cluster0.owzic.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
