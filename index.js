@@ -1,14 +1,14 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const app = express();
-const port = 3000;
 const mongo = require("./mongo");
 var MongoClient = require('mongodb').MongoClient;
 const schema = require("./schemas/room-schema");
 const bodyParser = require("body-parser");
 const { assert } = require("console");
 const mongoose = require("mongoose");
-const MONGODB_URI="mongodb+srv://Rodrigo:alter130799@cluster0.owzic.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const { PORT, MONGODB_URI } = process.env;
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.set("view engine", "ejs");
@@ -108,6 +108,6 @@ app.post("/delete_reservation", async function(req,res){
   res.redirect("/home")
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Example app listening at http://localhost:${PORT}`);
 });

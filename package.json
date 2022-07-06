@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/RQAmaral/ADVANCED_DATABASE_SYSTEMS_COM519_ASSESSMENT#readme",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
     "mongodb": "^4.2.2",
