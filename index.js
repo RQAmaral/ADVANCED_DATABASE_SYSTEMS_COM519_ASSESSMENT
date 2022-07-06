@@ -13,14 +13,20 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({extended:true}));
 
 //Connect to the Database
-
+const connectDB = async () => {
+  await mongo().then(async (mongoose) =>{
+    try{
+      console.log("Successfuly Connected to DB")
+    }catch{
+      console.log("Error Connecting to DB")
+    }
+  })
+};
 
 database = connectDB();
 
-const { PORT, MONGODB_URI } = process.env;
-
 //gets
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
   schema.find({}, function(err, rooms){
     res.render("index", {
       roomsList: rooms
